@@ -8,7 +8,7 @@ class Character(models.Model):
   # character information
   name = models.CharField(max_length=200)
   race = models.CharField(max_length=200)
-  character_class = models.CharField(max_length=200)
+  classes = models.CharField(max_length=200)
   level = models.IntegerField()
 
   # ability scores
@@ -40,13 +40,13 @@ class Character(models.Model):
     return ability_score_to_modifier(self.charisma)
 
   # meta data
-  create_date = models.DateTimeField('date created')
-  update_date = models.DateTimeField('date updated')
+  update_date = models.DateTimeField('last updated', auto_now_add=True)
+  owner = models.ForeignKey('auth.User', related_name='characters')
 
   #stringifier
   def __str__(self):
     return self.name
 
   class Meta:
-    ordering = ('create_date',)
+    ordering = ('update_date',)
 
