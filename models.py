@@ -8,8 +8,33 @@ class Character(models.Model):
   # character information
   name = models.CharField(max_length=200)
   race = models.CharField(max_length=200)
+  alignment = models.CharField(max_length=200, choices=[
+      ('lawful_good', 'Lawful Good'),
+      ('neutral_good', 'Neutral Good'),
+      ('chaotic_good', 'Chaotic Good'),
+      ('lawful_neutral', 'Lawful Neutral'),
+      ('true_neutral', 'True Neutral'),
+      ('chaotic_neutral', 'Chaotic Neutral'),
+      ('lawful_evil', 'Lawful Evil'),
+      ('neutral_evil', 'Neutral Evil'),
+      ('chaotic_evil', 'Chaotic Evil')
+    ])
   classes = models.CharField(max_length=200)
-  level = models.IntegerField()
+  size = models.CharField(max_length=200, default="medium", choices=[
+      ('small', 'small'),
+      ('medium', 'medium'),
+      ('large', 'large'),
+      ('huge', 'huge')
+    ])
+  level = models.IntegerField(default=1)
+
+  # cosmetics
+  age = models.CharField(max_length=200, null=True)
+  gender = models.CharField(max_length=200, null=True)
+  height = models.CharField(max_length=200, null=True)
+  weight = models.CharField(max_length=200, null=True)
+  hair = models.CharField(max_length=200, null=True)
+  eyes = models.CharField(max_length=200, null=True)
 
   # ability scores
   strength = models.IntegerField()
@@ -19,27 +44,28 @@ class Character(models.Model):
   wisdom = models.IntegerField()
   charisma = models.IntegerField()
 
-  # ability modifiers
-  @property
-  def strength_modifier(self):
-    return ability_score_to_modifier(self.strength)
-  @property
-  def dexterity_modifier(self):
-    return ability_score_to_modifier(self.dexterity)
-  @property
-  def constitution_modifier(self):
-    return ability_score_to_modifier(self.constitution)
-  @property
-  def intelligence_modifier(self):
-    return ability_score_to_modifier(self.intelligence)
-  @property
-  def wisdom_modifier(self):
-    return ability_score_to_modifier(self.wisdom)
-  @property
-  def charisma_modifier(self):
-    return ability_score_to_modifier(self.charisma)
+  # hp
+  hit_points = models.IntegerField()
 
-  # meta data
+  # speed
+  base_speed = models.IntegerField()
+  armored_speed = models.IntegerField(null=True)
+  climb_speed = models.IntegerField(null=True)
+  swim_speed = models.IntegerField(null=True)
+  fly_speed = models.IntegerField(null=True)
+
+  # initiative
+  misc_initiative_modifier = models.IntegerField(null=True)
+
+  # Armor Class
+  armor_bonus = models.IntegerField(null=True)
+  shield_bonus = models.IntegerField(null=True)
+  natural_armor = models.IntegerField(null=True)
+  size_modifier = models.IntegerField(null=True)
+  deflection_modifier = models.IntegerField(null=True)
+  misc_ac_modifier = models.IntegerField(null=True)
+
+   # meta data
   update_date = models.DateTimeField('last updated', auto_now_add=True)
   owner = models.ForeignKey('auth.User', related_name='characters')
 
