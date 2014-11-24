@@ -93,3 +93,15 @@ class Character(models.Model):
   class Meta:
     ordering = ('update_date',)
 
+class Size(models.Model):
+  name = models.CharField(max_length=200)
+  armor_mod = models.IntegerField()
+
+class Race(models.Model):
+  name = models.CharField(max_length=200)
+  ability_score_adj = models.CharField(max_length=200)
+  size = models.ForeignKey('Size')
+  base_speed = models.IntegerField()
+
+
+
