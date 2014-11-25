@@ -8,24 +8,9 @@ class Character(models.Model):
   # character information
   name = models.CharField(max_length=200)
   race = models.CharField(max_length=200)
-  alignment = models.CharField(max_length=200, choices=[
-      ('lawful_good', 'Lawful Good'),
-      ('neutral_good', 'Neutral Good'),
-      ('chaotic_good', 'Chaotic Good'),
-      ('lawful_neutral', 'Lawful Neutral'),
-      ('true_neutral', 'True Neutral'),
-      ('chaotic_neutral', 'Chaotic Neutral'),
-      ('lawful_evil', 'Lawful Evil'),
-      ('neutral_evil', 'Neutral Evil'),
-      ('chaotic_evil', 'Chaotic Evil')
-    ])
+  alignment = models.ForeignKey('Alignment')
   classes = models.CharField(max_length=200)
-  size = models.CharField(max_length=200, default="medium", choices=[
-      ('small', 'small'),
-      ('medium', 'medium'),
-      ('large', 'large'),
-      ('huge', 'huge')
-    ])
+  size = models.ForeignKey('Size')
   level = models.IntegerField(default=1)
 
   # Cosmetics
@@ -80,6 +65,7 @@ class Character(models.Model):
   spell_resistance = models.IntegerField(null=True)
 
   # Skills
+  languages = models.ManyToManyField('Language')
   # Complicated. Will do later
 
    # meta data
@@ -93,15 +79,52 @@ class Character(models.Model):
   class Meta:
     ordering = ('update_date',)
 
+class Alignment(models.Model):
+  name = models.CharField(max_length=200)
+
+  # stringifier
+  def __str__(self):
+    return self.name
+
+  #('lawful_good', 'Lawful Good'),
+  #    ('neutral_good', 'Neutral Good'),
+  #    ('chaotic_good', 'Chaotic Good'),
+  #    ('lawful_neutral', 'Lawful Neutral'),
+  #    ('true_neutral', 'True Neutral'),
+  #    ('chaotic_neutral', 'Chaotic Neutral'),
+  #    ('lawful_evil', 'Lawful Evil'),
+  #    ('neutral_evil', 'Neutral Evil'),
+  #    ('chaotic_evil', 'Chaotic Evil')
+
+class Language(models.Model):
+  name = models.CharField(max_length=200)
+
+  # stringifier
+  def __str__(self):
+    return self.name
+
 class Size(models.Model):
   name = models.CharField(max_length=200)
-  armor_mod = models.IntegerField()
+  mod = models.IntegerField()
+  special_mod = models.IntegerField()
+  fly_mod = models.IntegerField()
+  stealth_mod = models.IntegerField()
+
+  # stringifier
+  def __str__(self):
+    return self.name
 
 class Race(models.Model):
   name = models.CharField(max_length=200)
   ability_score_adj = models.CharField(max_length=200)
   size = models.ForeignKey('Size')
   base_speed = models.IntegerField()
+  languages = models.ManyToManyField('Language')
+  traits = models.CharField(max_length=1000, null=True)
+
+  # stringifier
+  def __str__(self):
+    return self.name
 
 
 
