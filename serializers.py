@@ -3,7 +3,7 @@ from charman.models import Character, Alignment, Language, Size
 
 class CharacterSerializer(serializers.HyperlinkedModelSerializer):
   owner = serializers.Field(source='owner.username')
-  alignment = serializers.Field(source='alignment.name')
+  #alignment = serializers.Field(source='alignment.name')
 
   class Meta:
     model = Character
@@ -21,6 +21,7 @@ class CharacterSerializer(serializers.HyperlinkedModelSerializer):
         'reflex_base_mod', 'reflex_magic_mod', 'reflex_misc_mod',
         'will_base_mod', 'will_magic_mod', 'will_misc_mod',
         'base_attack_bonus', 'spell_resistance',
+        'languages',
         'update_date', 'owner')
 
 class AlignmentSerializer(serializers.HyperlinkedModelSerializer):

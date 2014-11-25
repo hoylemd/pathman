@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
-from charman.models import Character, Alignment
-from charman.serializers import CharacterSerializer, AlignmentSerializer
+from charman.models import Character, Alignment, Language, Size
+from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer
 from charman.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics, permissions, renderers, viewsets
@@ -35,4 +35,25 @@ class AlignmentViewSet(viewsets.ModelViewSet):
   serializer_class = AlignmentSerializer
   permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
   # IsAdminOrReadOnly
+
+class LanguageViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Language.objects.all()
+  serializer_class = LanguageSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
+
+class SizeViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Size.objects.all()
+  serializer_class = SizeSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
+
 
