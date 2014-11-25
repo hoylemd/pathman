@@ -29,7 +29,7 @@ class AlignmentSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Alignment
-    fields = ('name')
+    fields = ('url', 'name',)
 
 class LanguageSerializer(serializers.HyperlinkedModelSerializer):
   characters = serializers.HyperlinkedRelatedField(
@@ -37,7 +37,7 @@ class LanguageSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Language
-    fields = ('name')
+    fields = ('url', 'name',)
 
 class SizeSerializer(serializers.HyperlinkedModelSerializer):
   characters = serializers.HyperlinkedRelatedField(
@@ -47,5 +47,5 @@ class SizeSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Size
-    fields = ('name', 'mod', 'special_mod', 'fly_mod', 'stealth_mod')
+    fields = ('url', 'name', 'mod', 'special_mod', 'fly_mod', 'stealth_mod')
 

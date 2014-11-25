@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
-from charman.models import Character
-from charman.serializers import CharacterSerializer
+from charman.models import Character, Alignment
+from charman.serializers import CharacterSerializer, AlignmentSerializer
 from charman.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics, permissions, renderers, viewsets
@@ -26,4 +26,13 @@ class CharacterViewSet(viewsets.ModelViewSet):
   def pre_save(self, obj):
     obj.owner = self.request.user
 
+class AlignmentViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Alignment.objects.all()
+  serializer_class = AlignmentSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
 
