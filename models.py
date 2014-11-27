@@ -126,5 +126,68 @@ class Race(models.Model):
   def __str__(self):
     return self.name
 
+class Skill(models.Model):
+  name = models.CharField(max_length=200),
+  ability = models.CharField(max_length=5, choices=[
+    ('str', 'STR'),
+    ('dex', 'DEX'),
+    ('con', 'CON'),
+    ('int', 'INT'),
+    ('wis', 'WIS'),
+    ('cha', 'CHA')
+  ])
+  trained_only = models.BooleanField(default=False)
+  synergies = models.ManyToManyField('Skill')
+
+  # stringifier
+  def __str__(self):
+    return self.name
+
+
+class CharacterClass(models.Model):
+  name = models.CharField(max_length=200)
+  alignment = models.CharField(max_length=200)
+  hit_die = models.IntegerField()
+  starting_wealth = models.CharField(max_length=200)
+  class_skills = models.ManyToManyField('Skill')
+  skill_ranks = models.IntegerField()
+  bab_progression = models.CharField(max_length=10, choices=[
+    ('fast', 'Fast'),
+    ('medium', 'Medium'),
+    ('slow', 'Slow')
+  ])
+  fort_progression = models.CharField(max_length=5, choices=[
+    ('good', 'Good'),
+    ('bad', 'Bad')
+  ])
+  ref_progression = models.CharField(max_length=5, choices=[
+    ('good', 'Good'),
+    ('bad', 'Bad')
+  ])
+  will_progression = models.CharField(max_length=5, choices=[
+    ('good', 'Good'),
+    ('bad', 'Bad')
+  ])
+  spell_type = models.CharField(max_length=10, null=True, choices=[
+    ('arcane', 'Arcane'),
+    ('divine', 'Divine'),
+    ('psionic', 'Psionic'),
+    (None, 'None')
+  ])
+  spell_progression = models.CharField(max_length=10, null=True, choices=[
+    ('full', 'Full'),
+    ('moderate', 'Moderate'),
+    ('minor', 'Minor'),
+    (None, 'None')
+  ])
+
+  # stringifier
+  def __str__(self):
+    return self.name
+
+
+
+
+
 
 
