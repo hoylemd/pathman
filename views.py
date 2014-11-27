@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
-from charman.models import Character, Alignment, Language, Size
-from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer
+from charman.models import Character, Alignment, Language, Size, Race
+from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer, RaceSerializer
 from charman.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics, permissions, renderers, viewsets
@@ -25,6 +25,11 @@ class CharacterViewSet(viewsets.ModelViewSet):
 
   def pre_save(self, obj):
     obj.owner = self.request.user
+
+    # copy racial traits
+    obj.size = obj.race.size
+    obj.base_speed = obj.race.base_speed
+
 
 class AlignmentViewSet(viewsets.ModelViewSet):
   """
@@ -53,6 +58,16 @@ class SizeViewSet(viewsets.ModelViewSet):
   """
   queryset = Size.objects.all()
   serializer_class = SizeSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
+
+class RaceViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Race.objects.all()
+  serializer_class = RaceSerializer
   permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
   # IsAdminOrReadOnly
 

@@ -7,7 +7,7 @@ def ability_score_to_modifier(score):
 class Character(models.Model):
   # character information
   name = models.CharField(max_length=200)
-  race = models.CharField(max_length=200)
+  race = models.ForeignKey('Race')
   alignment = models.ForeignKey('Alignment')
   classes = models.CharField(max_length=200)
   size = models.ForeignKey('Size')
@@ -117,7 +117,7 @@ class Size(models.Model):
 class Race(models.Model):
   name = models.CharField(max_length=200)
   ability_score_adj = models.CharField(max_length=200)
-  size = models.ForeignKey('Size')
+  size = models.ForeignKey('Size', default=5)
   base_speed = models.IntegerField()
   languages = models.ManyToManyField('Language')
   traits = models.CharField(max_length=1000, null=True)

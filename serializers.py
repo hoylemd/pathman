@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from charman.models import Character, Alignment, Language, Size
+from charman.models import Character, Alignment, Language, Size, Race
 
 class CharacterSerializer(serializers.HyperlinkedModelSerializer):
   owner = serializers.Field(source='owner.username')
@@ -43,10 +43,20 @@ class LanguageSerializer(serializers.HyperlinkedModelSerializer):
 class SizeSerializer(serializers.HyperlinkedModelSerializer):
   characters = serializers.HyperlinkedRelatedField(
       view_name='character-detail', many=True)
-  #races = serializers.HyperlinkedRelatedField(
-  #    view_name='race-detail', many=True)
+  races = serializers.HyperlinkedRelatedField(
+      view_name='race-detail', many=True)
 
   class Meta:
     model = Size
     fields = ('url', 'name', 'mod', 'special_mod', 'fly_mod', 'stealth_mod')
+
+class RaceSerializer(serializers.HyperlinkedModelSerializer):
+  characters = serializers.HyperlinkedRelatedField(
+      view_name='character-detail', many=True)
+
+  class Meta:
+    model = Race
+    fields = ('url', 'name', 'ability_score_adj', 'size', 'base_speed',
+        'languages', 'traits')
+
 
