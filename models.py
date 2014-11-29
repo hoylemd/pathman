@@ -127,7 +127,7 @@ class Race(models.Model):
     return self.name
 
 class Skill(models.Model):
-  name = models.CharField(max_length=200),
+  name = models.CharField(max_length=200)
   ability = models.CharField(max_length=5, choices=[
     ('str', 'STR'),
     ('dex', 'DEX'),
@@ -137,7 +137,6 @@ class Skill(models.Model):
     ('cha', 'CHA')
   ])
   trained_only = models.BooleanField(default=False)
-  synergies = models.ManyToManyField('Skill')
 
   # stringifier
   def __str__(self):
@@ -173,13 +172,14 @@ class CharacterClass(models.Model):
     ('divine', 'Divine'),
     ('psionic', 'Psionic'),
     (None, 'None')
-  ])
+  ], blank=True)
   spell_progression = models.CharField(max_length=10, null=True, choices=[
+    ('abundant', 'Abundant'),
     ('full', 'Full'),
     ('moderate', 'Moderate'),
     ('minor', 'Minor'),
     (None, 'None')
-  ])
+  ], blank=True)
 
   # stringifier
   def __str__(self):

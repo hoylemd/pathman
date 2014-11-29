@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
-from charman.models import Character, Alignment, Language, Size, Race
-from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer, RaceSerializer
+from charman.models import Character, Alignment, Language, Size, Race, Skill, CharacterClass
+from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer, RaceSerializer, SkillSerializer, CharacterClassSerializer
 from charman.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics, permissions, renderers, viewsets
@@ -71,4 +71,22 @@ class RaceViewSet(viewsets.ModelViewSet):
   permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
   # IsAdminOrReadOnly
 
+class SkillViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Skill.objects.all()
+  serializer_class = SkillSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
 
+class CharacterClassViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = CharacterClass.objects.all()
+  serializer_class = CharacterClassSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
