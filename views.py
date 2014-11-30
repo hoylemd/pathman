@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
-from charman.models import Character, Alignment, Language, Size, Race, Skill, CharacterClass
-from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer, RaceSerializer, SkillSerializer, CharacterClassSerializer
+from charman.models import Character, Alignment, Language, Size, Race, Skill, CharacterClass, Feature, Feat
+from charman.serializers import CharacterSerializer, AlignmentSerializer, LanguageSerializer, SizeSerializer, RaceSerializer, SkillSerializer, CharacterClassSerializer, FeatureSerializer, FeatSerializer
 from charman.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics, permissions, renderers, viewsets
@@ -88,5 +88,25 @@ class CharacterClassViewSet(viewsets.ModelViewSet):
   """
   queryset = CharacterClass.objects.all()
   serializer_class = CharacterClassSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
+
+class FeatureViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Feature.objects.all()
+  serializer_class = FeatureSerializer
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  # IsAdminOrReadOnly
+
+class FeatViewSet(viewsets.ModelViewSet):
+  """
+  This viewset automatically provides a 'list', 'create', 'retrieve',
+  'update', and 'destroy' actions
+  """
+  queryset = Feat.objects.all()
+  serializer_class = FeatSerializer
   permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
   # IsAdminOrReadOnly

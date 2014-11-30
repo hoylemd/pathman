@@ -170,24 +170,34 @@ class CharacterClass(models.Model):
   spell_type = models.CharField(max_length=10, null=True, choices=[
     ('arcane', 'Arcane'),
     ('divine', 'Divine'),
-    ('psionic', 'Psionic'),
-    (None, 'None')
   ], blank=True)
   spell_progression = models.CharField(max_length=10, null=True, choices=[
     ('abundant', 'Abundant'),
     ('full', 'Full'),
     ('moderate', 'Moderate'),
     ('minor', 'Minor'),
-    (None, 'None')
   ], blank=True)
 
   # stringifier
   def __str__(self):
     return self.name
 
+class Feature(models.Model):
+  name = models.CharField(max_length=200)
+  description = models.CharField(max_length=1000)
 
+  # stringifier
+  def __str__(self):
+    return self.name
 
+class Feat(models.Model):
+  name = models.CharField(max_length=200)
+  description = models.CharField(max_length=1000)
+  prerequisite = models.CharField(max_length=200)
+  feat_types = models.CharField(max_length=200)
 
-
+  # stringifier
+  def __str__(self):
+    return self.name
 
 
