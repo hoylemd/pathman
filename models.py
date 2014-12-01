@@ -9,7 +9,7 @@ class Character(models.Model):
   name = models.CharField(max_length=200)
   race = models.ForeignKey('Race')
   alignment = models.ForeignKey('Alignment')
-  classes = models.CharField(max_length=200)
+  classes = models.ManyToManyField('CharacterClass', through='ClassLevel')
   size = models.ForeignKey('Size')
   level = models.IntegerField(default=1)
 
@@ -142,7 +142,6 @@ class Skill(models.Model):
   def __str__(self):
     return self.name
 
-
 class CharacterClass(models.Model):
   name = models.CharField(max_length=200)
   alignment = models.CharField(max_length=200)
@@ -181,6 +180,12 @@ class CharacterClass(models.Model):
   # stringifier
   def __str__(self):
     return self.name
+
+class ClassLevel(models.Model):
+  character = models.ForeignKey('Character')
+  character_class = models.ForeignKey('CharacterClass')
+  level = models.IntegerField()
+  preferred = models.BooleanField(default=False)
 
 class Feature(models.Model):
   name = models.CharField(max_length=200)
