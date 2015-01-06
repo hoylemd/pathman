@@ -1,10 +1,6 @@
 from django.db import models
 
 
-def ability_score_to_modifier(score):
-        return (score / 2) - 5
-
-
 # Create your models here.
 class Character(models.Model):
     # character information
