@@ -9,7 +9,7 @@ class Character(models.Model):
     alignment = models.CharField(max_length=200)
     classes = models.ManyToManyField('CharacterClass',
                                      through='ClassLevel', null=True, default=None)
-    size = models.ForeignKey('Size')
+    size = models.ForeignKey('Size', related_name='characters')
     level = models.IntegerField(default=1)
 
     # Cosmetics
@@ -175,8 +175,6 @@ class Feature(models.Model):
     # stringifier
     def __str__(self):
         return self.name
-
-    classes = models.CharField(max_length=200)
 
 
 class Feat(models.Model):
