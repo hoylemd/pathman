@@ -10,22 +10,6 @@ class CharacterSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Character
 
 
-class AlignmentSerializer(serializers.HyperlinkedModelSerializer):
-    characters = serializers.HyperlinkedRelatedField(
-        view_name='character-detail', many=True)
-
-    class Meta:
-        model = models.Alignment
-
-
-class LanguageSerializer(serializers.HyperlinkedModelSerializer):
-    characters = serializers.HyperlinkedRelatedField(
-        view_name='character-detail', many=True)
-
-    class Meta:
-        model = models.Language
-
-
 class SizeSerializer(serializers.HyperlinkedModelSerializer):
     characters = serializers.HyperlinkedRelatedField(
         view_name='character-detail', many=True)

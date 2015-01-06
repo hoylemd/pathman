@@ -6,9 +6,9 @@ class Character(models.Model):
     # character information
     name = models.CharField(max_length=200)
     race = models.ForeignKey('Race')
-    alignment = models.ForeignKey('Alignment')
+    alignment = models.CharField(max_length=200)
     classes = models.ManyToManyField('CharacterClass',
-                                     through='ClassLevel')
+                                     through='ClassLevel', null=True, default=None)
     size = models.ForeignKey('Size')
     level = models.IntegerField(default=1)
 
@@ -64,7 +64,7 @@ class Character(models.Model):
     spell_resistance = models.IntegerField(null=True)
 
     # Skills
-    languages = models.ManyToManyField('Language')
+    languages = models.CharField(max_length=200, null=True)
     # Complicated. Will do later
 
     # meta data
@@ -77,34 +77,6 @@ class Character(models.Model):
 
     class Meta:
         ordering = ('update_date',)
-
-
-class Alignment(models.Model):
-    '''
-        ('lawful_good', 'Lawful Good'),
-        ('neutral_good', 'Neutral Good'),
-        ('chaotic_good', 'Chaotic Good'),
-        ('lawful_neutral', 'Lawful Neutral'),
-        ('true_neutral', 'True Neutral'),
-        ('chaotic_neutral', 'Chaotic Neutral'),
-        ('lawful_evil', 'Lawful Evil'),
-        ('neutral_evil', 'Neutral Evil'),
-        ('chaotic_evil', 'Chaotic Evil')
-    '''
-
-    name = models.CharField(max_length=200)
-
-    # stringifier
-    def __str__(self):
-        return self.name
-
-
-class Language(models.Model):
-    name = models.CharField(max_length=200)
-
-    # stringifier
-    def __str__(self):
-        return self.name
 
 
 class Size(models.Model):
@@ -124,7 +96,7 @@ class Race(models.Model):
     ability_score_adj = models.CharField(max_length=200)
     size = models.ForeignKey('Size', default=5)
     base_speed = models.IntegerField()
-    languages = models.ManyToManyField('Language')
+    languages = models.CharField(max_length=200)
     traits = models.CharField(max_length=1000, null=True)
 
     # stringifier
