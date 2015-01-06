@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from charman.models import Character, Alignment, Language, Size, Race, Skill, CharacterClass, Feature, Feat
+from charman.models import Character, Alignment, Language, Size, Race, Skill, CharacterClass, ClassLevel, Feature, Feat
 
 class CharacterSerializer(serializers.HyperlinkedModelSerializer):
   owner = serializers.Field(source='owner.username')
@@ -76,6 +76,10 @@ class CharacterClassSerializer(serializers.HyperlinkedModelSerializer):
     #    'ref_progression', 'will_progression', 'spell_type',
     #    'spell_progression')
 
+class ClassLevelSerializer(serializers.HyperlinkedModelSerializer):
+  class Meta:
+    model=ClassLevel
+
 class FeatureSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Feature
@@ -83,3 +87,5 @@ class FeatureSerializer(serializers.HyperlinkedModelSerializer):
 class FeatSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Feat
+
+
