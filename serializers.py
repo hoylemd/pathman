@@ -12,9 +12,9 @@ class CharacterSerializer(serializers.HyperlinkedModelSerializer):
 
 class SizeSerializer(serializers.HyperlinkedModelSerializer):
     characters = serializers.HyperlinkedRelatedField(
-        view_name='character-detail', many=True)
+        view_name='character-detail', many=True, read_only=True)
     races = serializers.HyperlinkedRelatedField(
-        view_name='race-detail', many=True)
+        view_name='race-detail', many=True, read_only=True)
 
     class Meta:
         model = models.Size
@@ -22,7 +22,7 @@ class SizeSerializer(serializers.HyperlinkedModelSerializer):
 
 class RaceSerializer(serializers.HyperlinkedModelSerializer):
     characters = serializers.HyperlinkedRelatedField(
-        view_name='character-detail', many=True)
+        view_name='character-detail', many=True, read_only=True)
 
     class Meta:
         model = models.Race
@@ -30,7 +30,7 @@ class RaceSerializer(serializers.HyperlinkedModelSerializer):
 
 class SkillSerializer(serializers.HyperlinkedModelSerializer):
     classes = serializers.HyperlinkedRelatedField(
-        view_name='characterclass-detail')
+        view_name='characterclass-detail', many=True, read_only=True)
 
     class Meta:
         model = models.Skill
