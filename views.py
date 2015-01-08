@@ -1,13 +1,9 @@
-from charman import models
-from charman.serializers import CharacterSerializer, SizeSerializer, RaceSerializer, SkillSerializer, CharacterClassSerializer, FeatureSerializer, FeatSerializer
+from charman import models, serializers
 from charman.permissions import IsOwnerOrReadOnly
 
-from rest_framework import generics, permissions, renderers, viewsets
+from rest_framework import permissions, renderers, viewsets
 from rest_framework.decorators import detail_route
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
 
-import datetime
 
 class CharacterViewSet(viewsets.ModelViewSet):
     """
@@ -15,12 +11,11 @@ class CharacterViewSet(viewsets.ModelViewSet):
     'update', and 'destroy' actions
     """
     queryset = models.Character.objects.all()
-    serializer_class = CharacterSerializer
+    serializer_class = serializers.CharacterSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-            IsOwnerOrReadOnly,)
+                          IsOwnerOrReadOnly,)
 
     @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
-
     def pre_save(self, obj):
         obj.owner = self.request.user
 
@@ -28,15 +23,17 @@ class CharacterViewSet(viewsets.ModelViewSet):
         obj.size = obj.race.size
         obj.base_speed = obj.race.base_speed
 
+
 class SizeViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides a 'list', 'create', 'retrieve',
     'update', and 'destroy' actions
     """
     queryset = models.Size.objects.all()
-    serializer_class = SizeSerializer
+    serializer_class = serializers.SizeSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
+
 
 class RaceViewSet(viewsets.ModelViewSet):
     """
@@ -44,9 +41,10 @@ class RaceViewSet(viewsets.ModelViewSet):
     'update', and 'destroy' actions
     """
     queryset = models.Race.objects.all()
-    serializer_class = RaceSerializer
+    serializer_class = serializers.RaceSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
+
 
 class SkillViewSet(viewsets.ModelViewSet):
     """
@@ -54,9 +52,10 @@ class SkillViewSet(viewsets.ModelViewSet):
     'update', and 'destroy' actions
     """
     queryset = models.Skill.objects.all()
-    serializer_class = SkillSerializer
+    serializer_class = serializers.SkillSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
+
 
 class CharacterClassViewSet(viewsets.ModelViewSet):
     """
@@ -64,9 +63,10 @@ class CharacterClassViewSet(viewsets.ModelViewSet):
     'update', and 'destroy' actions
     """
     queryset = models.CharacterClass.objects.all()
-    serializer_class = CharacterClassSerializer
+    serializer_class = serializers.CharacterClassSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
+
 
 class FeatureViewSet(viewsets.ModelViewSet):
     """
@@ -74,9 +74,10 @@ class FeatureViewSet(viewsets.ModelViewSet):
     'update', and 'destroy' actions
     """
     queryset = models.Feature.objects.all()
-    serializer_class = FeatureSerializer
+    serializer_class = serializers.FeatureSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
+
 
 class FeatViewSet(viewsets.ModelViewSet):
     """
@@ -84,6 +85,6 @@ class FeatViewSet(viewsets.ModelViewSet):
     'update', and 'destroy' actions
     """
     queryset = models.Feat.objects.all()
-    serializer_class = FeatSerializer
+    serializer_class = serializers.FeatSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
