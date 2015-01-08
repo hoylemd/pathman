@@ -100,15 +100,87 @@
     },
     {
         "fields": {
+            "ability_score_adj": "+2 Constitution, +2 Wisdom, -2 Charisma",
+            "base_speed": 20,
+            "languages": "Common, Dwarven",
+            "name": "Dwarf",
+            "size": 5,
+            "traits": "Slow and Steady, Darkvision, Defensive Training, Greed, Hatred, Hardy, Stability, Stonecunning, Weapon Familiarity"
+        },
+        "model": "charman.race",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "ability_score_adj": "+2 Dexterity, +2 Intelligence, -2 Constitution",
+            "base_speed": 30,
+            "languages": "Common, Elven",
+            "name": "Elf",
+            "size": 5,
+            "traits": "Low-Light Vision, Elven Immunities, Elven Magic, Keen Senses, Weapon Familiarity"
+        },
+        "model": "charman.race",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "ability_score_adj": "+2 Constitution, +2 Charisma, -2 Strength",
+            "base_speed": 20,
+            "languages": "Common, Gnome, Sylvan",
+            "name": "Gnome",
+            "size": 4,
+            "traits": "Low-Light Vision, Defensive Training, Gnome Magic, Hatred, Illusion Resistance, Keen Senses, Obsessive, Weapon Familiarity"
+        },
+        "model": "charman.race",
+        "pk": 3
+    },
+    {
+        "fields": {
             "ability_score_adj": "+2 to Any",
             "base_speed": 30,
-            "languages": "",
+            "languages": "Common, Elven",
+            "name": "Half-Elf",
+            "size": 5,
+            "traits": "Low-Light Vision, Adaptability, Elf Blood, Elven Immunities, Keen Senses, Multitalented"
+        },
+        "model": "charman.race",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "ability_score_adj": "+2 to Any",
+            "base_speed": 30,
+            "languages": "Common, Orc",
+            "name": "Half-Orc",
+            "size": 5,
+            "traits": "Darkvision, Intimidating, Orc Blood, Orc Ferocity, Weapon Familiarity"
+        },
+        "model": "charman.race",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "ability_score_adj": "+2 Dexterity, +2 Charisma, -2 Strength",
+            "base_speed": 20,
+            "languages": "Common, Halfling",
+            "name": "Halfling",
+            "size": 4,
+            "traits": "Fearless, Halfling Luck, Keen Senses, Sure-Footed, Weapon Familiarity"
+        },
+        "model": "charman.race",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "ability_score_adj": "+2 to Any",
+            "base_speed": 30,
+            "languages": "Common",
             "name": "Human",
             "size": 5,
             "traits": "Skilled, Bonus Feat"
         },
         "model": "charman.race",
-        "pk": 1
+        "pk": 7
     },
     {
         "fields": {
@@ -691,69 +763,6 @@
     {
         "fields": {
             "alignment": "Any",
-            "bab_progression": "slow",
-            "class_skills": [
-                2,
-                3,
-                5,
-                10,
-                13,
-                14,
-                27,
-                31,
-                35
-            ],
-            "fort_progression": "bad",
-            "hit_die": 6,
-            "name": "Sorcerer",
-            "ref_progression": "bad",
-            "skill_ranks": 2,
-            "spell_progression": "abundant",
-            "spell_type": "arcane",
-            "starting_wealth": "2d6 x 10 gp + Clothes",
-            "will_progression": "good"
-        },
-        "model": "charman.characterclass",
-        "pk": 9
-    },
-    {
-        "fields": {
-            "alignment": "Any",
-            "bab_progression": "slow",
-            "class_skills": [
-                2,
-                5,
-                10,
-                14,
-                15,
-                16,
-                17,
-                18,
-                19,
-                20,
-                21,
-                22,
-                23,
-                24,
-                27,
-                31
-            ],
-            "fort_progression": "bad",
-            "hit_die": 6,
-            "name": "Wizard",
-            "ref_progression": "bad",
-            "skill_ranks": 2,
-            "spell_progression": "full",
-            "spell_type": "arcane",
-            "starting_wealth": "2d6 x 10 gp + Clothes",
-            "will_progression": "good"
-        },
-        "model": "charman.characterclass",
-        "pk": 10
-    },
-    {
-        "fields": {
-            "alignment": "Any",
             "bab_progression": "medium",
             "class_skills": [
                 1,
@@ -787,6 +796,69 @@
             "spell_type": null,
             "starting_wealth": "4d6 x 10 gp + Clothes",
             "will_progression": "bad"
+        },
+        "model": "charman.characterclass",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "alignment": "Any",
+            "bab_progression": "slow",
+            "class_skills": [
+                2,
+                3,
+                5,
+                10,
+                13,
+                14,
+                27,
+                31,
+                35
+            ],
+            "fort_progression": "bad",
+            "hit_die": 6,
+            "name": "Sorcerer",
+            "ref_progression": "bad",
+            "skill_ranks": 2,
+            "spell_progression": "abundant",
+            "spell_type": "arcane",
+            "starting_wealth": "2d6 x 10 gp + Clothes",
+            "will_progression": "good"
+        },
+        "model": "charman.characterclass",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "alignment": "Any",
+            "bab_progression": "slow",
+            "class_skills": [
+                2,
+                5,
+                10,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                27,
+                31
+            ],
+            "fort_progression": "bad",
+            "hit_die": 6,
+            "name": "Wizard",
+            "ref_progression": "bad",
+            "skill_ranks": 2,
+            "spell_progression": "full",
+            "spell_type": "arcane",
+            "starting_wealth": "2d6 x 10 gp + Clothes",
+            "will_progression": "good"
         },
         "model": "charman.characterclass",
         "pk": 11

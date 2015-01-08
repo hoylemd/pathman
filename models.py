@@ -5,10 +5,12 @@ from django.db import models
 class Character(models.Model):
     # character information
     name = models.CharField(max_length=200)
-    race = models.ForeignKey('Race')
+    race = models.ForeignKey('Race', related_name='characters')
     alignment = models.CharField(max_length=200)
     classes = models.ManyToManyField('CharacterClass',
-                                     through='ClassLevel', null=True, default=None)
+                                     through='ClassLevel',
+                                     null=True,
+                                     default=None)
     size = models.ForeignKey('Size', related_name='characters')
     level = models.IntegerField(default=1)
 
