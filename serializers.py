@@ -4,7 +4,7 @@ from charman import models
 
 
 class CharacterSerializer(serializers.HyperlinkedModelSerializer):
-    owner = serializers.Field(source='owner.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = models.Character
