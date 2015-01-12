@@ -1,11 +1,11 @@
 from charman import models, serializers
 from charman.permissions import IsOwnerOrReadOnly
 
-from rest_framework import permissions, renderers, viewsets
+from rest_framework import permissions, renderers, viewsets, mixins
 from rest_framework.decorators import detail_route
 
 
-class CharacterViewSet(viewsets.ModelViewSet):
+class CharacterViewSet(viewsets.ModelViewSet, mixins.CreateModelMixin):
     """
     This viewset automatically provides a 'list', 'create', 'retrieve',
     'update', and 'destroy' actions
@@ -16,12 +16,12 @@ class CharacterViewSet(viewsets.ModelViewSet):
                           IsOwnerOrReadOnly,)
 
     @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
-    def pre_save(self, obj):
-        obj.owner = self.request.user
+    def perform_create(self, serializer):
+        instance = serializer.save(owner=self.request.user)
 
-        # copy racial traits
-        obj.size = obj.race.size
-        obj.base_speed = obj.race.base_speed
+        # copy racial fields
+        instance.base_speed = instance.race.base_speed
+        instance.size = instance.race.size
 
 
 class SizeViewSet(viewsets.ModelViewSet):
