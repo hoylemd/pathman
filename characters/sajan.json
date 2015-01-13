@@ -1,0 +1,62 @@
+[
+    {
+        "fields": {
+            "ac_misc_mod": 3,
+            "age": null,
+            "alignment": "Lawful Neutral",
+            "armor_bonus": null,
+            "armored_speed": null,
+            "base_attack_bonus": 0,
+            "base_speed": 30,
+            "charisma": 10,
+            "climb_speed": null,
+            "constitution": 14,
+            "deflection_mod": null,
+            "dexterity": 15,
+            "eyes": null,
+            "fly_speed": null,
+            "fortitude_base_mod": 2,
+            "fortitude_magic_mod": null,
+            "fortitude_misc_mod": null,
+            "gender": "Male",
+            "hair": null,
+            "height": null,
+            "hit_points": 11,
+            "intelligence": 10,
+            "languages": "Common, Vudrani",
+            "level": 1,
+            "misc_initiative_modifier": 0,
+            "name": "Sajan",
+            "natural_armor": null,
+            "owner": 1,
+            "race": 7,
+            "reflex_base_mod": 2,
+            "reflex_magic_mod": null,
+            "reflex_misc_mod": null,
+            "shield_bonus": null,
+            "size": 5,
+            "spell_resistance": null,
+            "strength": 16,
+            "swim_speed": null,
+            "update_date": "2015-01-13T13:26:17.185Z",
+            "weight": null,
+            "will_base_mod": 2,
+            "will_magic_mod": null,
+            "will_misc_mod": null,
+            "wisdom": 13
+        },
+        "model": "charman.character",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "character": 1,
+            "character_class": 6,
+            "level": 1,
+            "owner": 1,
+            "preferred": true
+        },
+        "model": "charman.classlevel",
+        "pk": 3
+    }
+]
