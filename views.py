@@ -5,25 +5,6 @@ from rest_framework import permissions, renderers, viewsets, mixins
 from rest_framework.decorators import detail_route
 
 
-class CharacterViewSet(viewsets.ModelViewSet, mixins.CreateModelMixin):
-    """
-    This viewset automatically provides a 'list', 'create', 'retrieve',
-    'update', and 'destroy' actions
-    """
-    queryset = models.Character.objects.all()
-    serializer_class = serializers.CharacterSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly,)
-
-    @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
-    def perform_create(self, serializer):
-        instance = serializer.save(owner=self.request.user)
-
-        # copy racial fields
-        instance.base_speed = instance.race.base_speed
-        instance.size = instance.race.size
-
-
 class SizeViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides a 'list', 'create', 'retrieve',
@@ -88,3 +69,39 @@ class FeatViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.FeatSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # IsAdminOrReadOnly
+
+
+class CharacterViewSet(viewsets.ModelViewSet, mixins.CreateModelMixin):
+    """
+    This viewset automatically provides a 'list', 'create', 'retrieve',
+    'update', and 'destroy' actions
+    """
+    queryset = models.Character.objects.all()
+    serializer_class = serializers.CharacterSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+    @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
+    def perform_create(self, serializer):
+        instance = serializer.save(owner=self.request.user)
+
+        # copy racial fields
+        instance.base_speed = instance.race.base_speed
+        instance.size = instance.race.size
+
+
+class ClassLevelViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides a 'list', 'create', 'retrieve',
+    'update', and 'destroy' actions
+    """
+    queryset = models.ClassLevel.objects.all()
+    serializer_class = serializers.ClassLevelSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly)
+
+    def perform_create(self, serializer):
+        instance = serializer.save(owner=self.request.user)
+
+        # copy class information
+        instance.character.level += instance.level
