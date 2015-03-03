@@ -19,7 +19,7 @@ class Race(models.Model):
     size = models.ForeignKey('Size', default=5)
     base_speed = models.IntegerField()
     languages = models.CharField(max_length=200)
-    traits = models.CharField(max_length=1000, null=True)
+    traits = models.CharField(required=False, max_length=2000)
 
     # stringifier
     def __str__(self):
@@ -67,16 +67,20 @@ class CharacterClass(models.Model):
         ('good', 'Good'),
         ('bad', 'Bad')
     ])
-    spell_type = models.CharField(max_length=10, null=True, choices=[
-        ('arcane', 'Arcane'),
+    spell_type = models.CharField(max_length=10, required=False, choices=[
+        ('arcanae', 'Arcane'),
         ('divine', 'Divine'),
-    ], blank=True)
-    spell_progression = models.CharField(max_length=10, null=True, choices=[
-        ('abundant', 'Abundant'),
-        ('full', 'Full'),
-        ('moderate', 'Moderate'),
-        ('minor', 'Minor'),
-    ], blank=True)
+    ])
+    spell_progression = models.CharField(
+        max_length=10,
+        required=False,
+        choices=[
+            ('abundant', 'Abundant'),
+            ('full', 'Full'),
+            ('moderate', 'Moderate'),
+            ('minor', 'Minor'),
+        ]
+    )
 
     # stringifier
     def __str__(self):
@@ -116,12 +120,12 @@ class Character(models.Model):
     level = models.IntegerField(default=1)
 
     # Cosmetics
-    age = models.CharField(max_length=200, null=True)
-    gender = models.CharField(max_length=200, null=True)
-    height = models.CharField(max_length=200, null=True)
-    weight = models.CharField(max_length=200, null=True)
-    hair = models.CharField(max_length=200, null=True)
-    eyes = models.CharField(max_length=200, null=True)
+    age = models.CharField(max_length=200, required=False)
+    gender = models.CharField(max_length=200, required=False)
+    height = models.CharField(max_length=200, required=False)
+    weight = models.CharField(max_length=200, required=False)
+    hair = models.CharField(max_length=200, required=False)
+    eyes = models.CharField(max_length=200, required=False)
 
     # Ability scores
     strength = models.IntegerField()
@@ -167,7 +171,7 @@ class Character(models.Model):
     spell_resistance = models.IntegerField(null=True)
 
     # Skills
-    languages = models.CharField(max_length=200, null=True)
+    languages = models.CharField(max_length=200, required=False)
     # Complicated. Will do later
 
     # meta data
