@@ -20,3 +20,6 @@ class Character(InstrumentedModel):
     intelligence = models.IntegerField()
     wisdom = models.IntegerField()
     charisma = models.IntegerField()
+
+    def __str__(self):
+        return self.name
