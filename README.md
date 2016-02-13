@@ -1,4 +1,23 @@
+Pathman
+-------
+
 This is mike's Pathfinder character manager
+
+Using `my_scripts`
+==================
+
+these are shorthand commands I made to make some dev things easier.  You can
+either run them directly:
+
+`$ my_scripts/go`
+
+or add `./my_scripts` to your PATH environment variable.  Then you can just
+type the script name to run it:
+
+`$ go`
+
+My scripts
+==========
 
 To run in dev:
 - `my_scripts/go`
