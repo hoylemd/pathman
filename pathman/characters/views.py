@@ -10,4 +10,5 @@ def index(request):
 
 class CharacterCreateView(CreateView):
     model = Character
-    fields = ['name', 'hp']
+    fields = ['name', 'hp', 'strength', 'dexterity', 'constitution',
+              'intelligence', 'wisdom', 'charisma']
