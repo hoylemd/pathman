@@ -1,7 +1,11 @@
 <h1>Characters</h1>
 <ul>
 {% for character in object_list %}
-    <li>{{ character.name }} - {{ character.hp }} hp</li>
+    <li>
+        <a href="/characters/{{character.id}}" title="{{ character.name }}">
+            {{ character.name }} - {{ character.hp }} hp
+        </a>
+    </li>
 {% empty %}
     <li>No characters yet.</li>
 {% endfor %}
