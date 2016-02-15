@@ -1,11 +1,10 @@
 from django.conf.urls import url
 
-from . import views
+from .views import CharacterIndexView, CharacterDetailView, CharacterCreateView
 
-app_name = 'polls'
+app_name = 'characters'
 urlpatterns = [
-    url(r'^$', views.CharacterIndexView.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)/$', views.CharacterDetailView.as_view(),
-        name='detail'),
-    url(r'^new$', views.CharacterCreateView.as_view(), name='new')
+    url(r'^$', CharacterIndexView.as_view(), name='index'),
+    url(r'^(?P<pk>[0-9]+)/$', CharacterDetailView.as_view(), name='detail'),
+    url(r'^new$', CharacterCreateView.as_view(), name='new')
 ]
