@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
@@ -15,8 +14,8 @@ class CharacterDetailView(DetailView):
 class CharacterSheetView(View):
     def get(self, request, *args, **kwargs):
         character = get_object_or_404(Character, id=int(kwargs['pk']))
-        return HttpResponse(
-            "this is a character sheet for {}".format(character.name))
+        return render(request, 'characters/character_sheet.html',
+                      context={'character': character})
 
 
 class CharacterIndexView(ListView):
