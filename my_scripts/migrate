@@ -1,0 +1,14 @@
+#! /bin/bash
+
+manage_path='pathman/manage.py'
+dev_settings='config.settings.dev'
+
+command="migrate --settings=$dev_settings"
+
+if [ "$1" ]; then
+  python $manage_path $command pathman $1
+else
+  python $manage_path $command
+fi
+
+
