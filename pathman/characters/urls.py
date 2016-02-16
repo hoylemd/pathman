@@ -21,8 +21,5 @@ urlpatterns = [
         name='class_index'),
     url(r'^classes/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=models.CharacterClass),
-        name='class_detail'),
-    url(r'^classes/new$',
-        views.CharacterClassCreateView.as_view(),
-        name='class_create')
+        name='class_detail')
 ]
