@@ -8,12 +8,14 @@ urlpatterns = [
         name='index'),
     url(r'^(?P<pk>[0-9]+)/$', views.CharacterDetailView.as_view(),
         name='detail'),
+    url(r'^sheets/(?P<pk>[0-9]+)/$', views.CharacterSheetView.as_view(),
+        name='sheet'),
     url(r'^new$', views.CharacterCreateView.as_view(),
         name='new'),
-    url(r'classes/$', views.CharacterClassIndexView.as_view(),
+    url(r'^classes/$', views.CharacterClassIndexView.as_view(),
         name='class_index'),
-    url(r'classes/(?P<pk>[0-9]+)/$', views.CharacterClassDetailView.as_view(),
+    url(r'^classes/(?P<pk>[0-9]+)/$', views.CharacterClassDetailView.as_view(),
         name='class_detail'),
-    url(r'classes/new$', views.CharacterClassCreateView.as_view(),
+    url(r'^classes/new$', views.CharacterClassCreateView.as_view(),
         name='class_create')
 ]
