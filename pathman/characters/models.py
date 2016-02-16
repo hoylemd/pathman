@@ -81,6 +81,16 @@ class Character(InstrumentedModel):
     def charisma_mod(self):
         return ability_modifier(self.charisma)
 
+    @property
+    def classes_and_levels(self):
+        classes = self.classlevel_set.all()
+        string = ', '.join(c_class.summary for c_class in classes)
+
+        if string == '':
+            string = "A classless peasant!"
+
+        return string
+
     def save(self, *args, **kwargs):
         slug_name = slugify(self.name)
         slug_number = 0
