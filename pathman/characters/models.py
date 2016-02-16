@@ -109,3 +109,8 @@ class ClassLevel(TimeStampedModel):
     character = models.ForeignKey(Character,
                                   on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "{}, {} {}".format(self.character.name,
+                                  self.character_class.name,
+                                  self.level)
