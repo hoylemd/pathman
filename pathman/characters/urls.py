@@ -1,21 +1,28 @@
 from django.conf.urls import url
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from . import views
+from . import models
 
 app_name = 'characters'
 urlpatterns = [
-    url(r'^$', views.CharacterIndexView.as_view(),
+    url(r'^$',
+        ListView.as_view(model=models.Character),
         name='index'),
-    url(r'^(?P<pk>[0-9]+)/$', views.CharacterDetailView.as_view(),
+    url(r'^(?P<pk>[0-9]+)/$',
+        DetailView.as_view(model=models.Character),
         name='detail'),
-    url(r'^sheets/(?P<pk>[0-9]+)/$', views.CharacterSheetView.as_view(),
-        name='sheet'),
-    url(r'^new$', views.CharacterCreateView.as_view(),
+    url(r'^new$',
+        views.CharacterCreateView.as_view(),
         name='new'),
-    url(r'^classes/$', views.CharacterClassIndexView.as_view(),
+    url(r'^classes/$',
+        ListView.as_view(model=models.CharacterClass),
         name='class_index'),
-    url(r'^classes/(?P<pk>[0-9]+)/$', views.CharacterClassDetailView.as_view(),
+    url(r'^classes/(?P<pk>[0-9]+)/$',
+        DetailView.as_view(model=models.CharacterClass),
         name='class_detail'),
-    url(r'^classes/new$', views.CharacterClassCreateView.as_view(),
+    url(r'^classes/new$',
+        views.CharacterClassCreateView.as_view(),
         name='class_create')
 ]
