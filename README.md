@@ -26,4 +26,10 @@ To run in dev:
 - `my_scripts/go`
 
 To run in prod:
-python manage.py --settings=config.settings.prod
+- `python manage.py --settings=config.settings.prod`
+
+To create the dev db and user:
+- `my_scripts/init_dev_db`
+
+To remove the dev db:
+- `my_scripts/drop_dev_db`

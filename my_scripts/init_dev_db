@@ -1,0 +1,18 @@
+#! /bin/bash
+
+tool='createdb'
+db_name='pathman'
+
+if ! which $tool; then
+  echo "Postgres is not installed, or it's tools are not in your PATH."
+  exit 1
+fi
+
+echo "Creating $db_name database"
+command="$tool $db_name"
+$command
+
+echo "Creating $db_name user"
+tool='createuser'
+command="$tool $db_name"
+$command

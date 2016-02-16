@@ -1,0 +1,13 @@
+#! /bin/bash
+
+tool='dropdb'
+db_name='pathman'
+
+if ! which $tool; then
+  echo "Postgres is not installed, or it's tools are not in your PATH."
+  exit 1
+fi
+
+echo "Dropping $db_name database"
+command="$tool $db_name"
+$command
