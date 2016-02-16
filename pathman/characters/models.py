@@ -110,7 +110,10 @@ class ClassLevel(TimeStampedModel):
                                   on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
 
+    @property
+    def summary(self):
+        return "{} {}".format(self.character_class.name, self.level)
+
+
     def __str__(self):
-        return "{}, {} {}".format(self.character.name,
-                                  self.character_class.name,
-                                  self.level)
+        return "{}, {}".format(self.character.name, self.summary)
