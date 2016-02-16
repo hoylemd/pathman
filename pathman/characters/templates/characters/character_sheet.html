@@ -1,0 +1,42 @@
+{% load character_sheet_filters %}
+
+<h1>{{ character.name }}</h1>
+<h2>{{ class_levels }}</h2>
+
+<p>{{ character.hp }} hp</p>
+
+<table class="ability_scores">
+    <tr><th>Ability</th><th>Score</th><th>Mod</th></tr>
+    <tr>
+        <td>STR</td>
+        <td>{{ character.strength }}</td>
+        <td>{{ character.strength_mod|modifier }}</td>
+    <tr>
+    <tr>
+        <td>DEX</td>
+        <td>{{ character.dexterity }}</td>
+        <td>{{ character.dexterity_mod|modifier }}</td>
+    <tr>
+    <tr>
+        <td>CON</td>
+        <td>{{ character.constitution }}</td>
+        <td>{{ character.constitution_mod|modifier }}</td>
+    <tr>
+    <tr>
+        <td>INT</td>
+        <td>{{ character.intelligence }}</td>
+        <td>{{ character.intelligence_mod|modifier }}</td>
+    <tr>
+    <tr>
+        <td>WIS</td>
+        <td>{{ character.wisdom }}</td>
+        <td>{{ character.wisdom_mod|modifier }}</td>
+    <tr>
+    <tr>
+        <td>CHA</td>
+        <td>{{ character.charisma }}</td>
+        <td>{{ character.charisma_mod|modifier }}</td>
+    <tr>
+</table>
+
+<a href="{% url 'characters:index' %}" title="Character List">Back to List</a>
