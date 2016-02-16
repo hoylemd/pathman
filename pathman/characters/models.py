@@ -108,4 +108,4 @@ class ClassLevel(TimeStampedModel):
                                         on_delete=models.CASCADE)
     character = models.ForeignKey(Character,
                                   on_delete=models.CASCADE)
-    level = models.IntegerField()
+    level = models.IntegerField(default=1)
