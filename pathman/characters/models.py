@@ -51,6 +51,8 @@ class Character(InstrumentedModel):
     wisdom = models.IntegerField()
     charisma = models.IntegerField()
 
+    classes = models.ManyToManyField(CharacterClass, through='ClassLevel')
+
     def save(self, *args, **kwargs):
         slug_name = slugify(self.name)
         slug_number = 0
@@ -71,3 +73,11 @@ class Character(InstrumentedModel):
 
     def __str__(self):
         return self.name
+
+
+class ClassLevel(TimeStampedModel):
+    character_class = models.ForeignKey(CharacterClass,
+                                        on_delete=models.CASCADE)
+    character = models.ForeignKey(Character,
+                                  on_delete=models.CASCADE)
+    level = models.IntegerField()
