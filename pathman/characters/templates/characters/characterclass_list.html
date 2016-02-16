@@ -1,13 +1,16 @@
 <h1>Character Classes</h1>
 <ul>
-{% for c_class in object_list %}
+    {% for c_class in object_list %}
+        <li>
+            <a href="{% url 'characters:class_detail' c_class.id %}"
+                    title="{{ c_class.name }}">
+                {{ c_class.name }}
+            </a>
+        </li>
+    {% endfor %}
     <li>
-        <a href="{% url 'characters:class_detail' c_class.id %}" title="{{ c_class.name }}">
-            {{ c_class.name }}
-        </a>
+    <a href="/characters/classes/new" title="New character class">
+        Create New
+    </a>
     </li>
-{% endfor %}
-<li>
-  <a href="/characters/classes/new" title="New character class">Create New</a>
-</li>
 </ul>
