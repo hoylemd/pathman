@@ -12,12 +12,12 @@ def ability_modifier(score):
 class Character(InstrumentedModel):
     hp = models.IntegerField()
 
-    strength = models.IntegerField()
-    dexterity = models.IntegerField()
-    constitution = models.IntegerField()
-    intelligence = models.IntegerField()
-    wisdom = models.IntegerField()
-    charisma = models.IntegerField()
+    strength = models.IntegerField(default=10)
+    dexterity = models.IntegerField(default=10)
+    constitution = models.IntegerField(default=10)
+    intelligence = models.IntegerField(default=10)
+    wisdom = models.IntegerField(default=10)
+    charisma = models.IntegerField(default=10)
 
     classes = models.ManyToManyField(CharacterClass, through='ClassLevel')
 
