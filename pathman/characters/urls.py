@@ -21,5 +21,11 @@ urlpatterns = [
         name='class_index'),
     url(r'^classes/(?P<pk>[0-9]+)/$',
         DetailView.as_view(model=models.CharacterClass),
-        name='class_detail')
+        name='class_detail'),
+    url(r'^races/$',
+        ListView.as_view(model=models.Race),
+        name='race_index'),
+    url(r'^races/(?P<pk>[0-9]+)/$',
+        DetailView.as_view(model=models.Race),
+        name='race_detail')
 ]
