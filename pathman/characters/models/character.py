@@ -3,6 +3,7 @@ from django.db import models
 
 from .abstract import InstrumentedModel
 from .character_class import CharacterClass
+from .race import Race
 
 
 def ability_modifier(score):
@@ -20,6 +21,8 @@ class Character(InstrumentedModel):
     charisma = models.IntegerField(default=10)
 
     classes = models.ManyToManyField(CharacterClass, through='ClassLevel')
+
+    race = models.ForeignKey(Race, null=True)
 
     @property
     def strength_mod(self):
