@@ -1,10 +1,6 @@
 #! /bin/bash
 
 manage_path='pathman/manage.py'
-command='makemigrations'
-
-python $manage_path $command
-
 command="migrate"
 
 if [ "$1" ]; then
