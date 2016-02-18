@@ -1,12 +1,16 @@
 #! /bin/bash
 
-base_command='python pathman/manage.py'
-command="$base_command flush"
-$command
+dump_file="pathman/characters/fixtures/core_data.json"
+manage_path='pathman/manage.py'
+settings='--settings=config.settings.dev'
+manage="python $manage_path"
+
+command="flush $settings"
+$manage $command
 
 echo "Re-creating the root super user. Choose a password please."
-command="$base_command createsuperuser --username root --email root@localhost"
-$command
+command="createsuperuser --username root --email root@localhost $settings"
+$manage $command
 
-echo "Loading core classes"
-command="$base_command loaddata pathman/characters/fixtures/core_classes.json"
+echo "Loading core data ($dump_file)"
+command="loaddata $dump_file $settings"

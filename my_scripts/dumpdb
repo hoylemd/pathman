@@ -1,0 +1,16 @@
+#! /bin/bash
+
+dump_file="pathman/characters/fixtures/core_data.json"
+manage_path='pathman/manage.py'
+settings='--settings=config.settings.dev'
+manage="python $manage_path"
+
+set -x
+
+echo "dumping core data"
+command="dumpdata $settings"
+
+dump_cmd="$manage $command"
+format_cmd="python -m json.tool"
+
+$dump_cmd | $format_cmd > $dump_file
