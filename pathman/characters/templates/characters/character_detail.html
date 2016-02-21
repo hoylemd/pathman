@@ -1,7 +1,7 @@
 {% load character_sheet_filters %}
 
 <h1>{{ character.name }}</h1>
-<h2>{{ character.classes_and_levels }}</h2>
+<h2>{{ character.race.name }} {{ character.classes_and_levels }}</h2>
 
 <p>{{ character.hp }} hp</p>
 

@@ -5,5 +5,5 @@ from .models import Character
 
 class CharacterCreateView(CreateView):
     model = Character
-    fields = ['name', 'hp', 'strength', 'dexterity', 'constitution',
+    fields = ['name', 'hp', 'race', 'strength', 'dexterity', 'constitution',
               'intelligence', 'wisdom', 'charisma']
