@@ -1,16 +1,5 @@
 #! /bin/bash
 
-dump_file="pathman/characters/fixtures/core_data.json"
-manage_path='pathman/manage.py'
-settings='--settings=config.settings.dev'
-manage="python $manage_path"
+my_scripts/migrate 0001
 
-command="flush $settings"
-$manage $command
-
-echo "Re-creating the root super user. Choose a password please."
-command="createsuperuser --username root --email root@localhost $settings"
-$manage $command
-
-echo "Loading core data ($dump_file)"
-command="loaddata $dump_file $settings"
+my_scripts/migrate
