@@ -2,11 +2,16 @@
 
 manage_path='pathman/manage.py'
 dev_settings='config.settings.dev'
+default_app="characters"
 
 command="migrate --settings=$dev_settings"
 
 if [ "$1" ]; then
-  python $manage_path $command pathman $1
+  if [ "$2" ]; then
+    python $manage_path $command $1 $2
+  else
+    python $manage_path $command $default_app $1
+  fi
 else
   python $manage_path $command
 fi
