@@ -36,28 +36,50 @@ def slug_url(prefix='', extension=''):
 
 
 urlpatterns = [
-    url(r'^$',  # root url
-        ListView.as_view(model=models.Character),
-        name='index'),
-    url(r'^classes/$',  # 'classes/
+    # 'classes/
+    url(r'^classes/$',
         ListView.as_view(model=models.CharacterClass),
         name='class_index'),
-    url(slug_url('classes/'),  # 'classes/slug_as_id'
+
+    # 'races/slug_as_id/'
+    url(slug_url(prefix='classes/'),
+        RedirectView.as_view(pattern_name='characters:class-detail'),
+        name='detail-redirect'),
+    # 'classes/slug_as_id.html'
+    url(slug_url(prefix='classes/', extension='.html'),
         DetailView.as_view(model=models.CharacterClass),
         name='class_detail'),
-    url(r'^races/$',  # 'races/slug_as_id'
+
+    # 'races/'
+    url(r'^races/$',
         ListView.as_view(model=models.Race),
         name='race_index'),
-    url(slug_url('races/'),  # 'races/slug_as_id'
+
+    # 'races/slug_as_id/'
+    url(slug_url(prefix='races/'),
+        RedirectView.as_view(pattern_name='characters:race-detail'),
+        name='detail-redirect'),
+    # 'races/slug_as_id.html'
+    url(slug_url(prefix='races/', extension='.html'),
         DetailView.as_view(model=models.Race),
         name='race_detail'),
-    url(r'^new$',  # 'new'
+
+    # root url
+    url(r'^$',
+        ListView.as_view(model=models.Character),
+        name='index'),
+
+    # 'new'
+    url(r'^new$',
         views.CharacterCreateView.as_view(),
         name='new'),
+
+    # 'slug_as_id/'
     url(slug_url(),
         RedirectView.as_view(pattern_name='characters:detail'),
         name='detail-redirect'),
-    url(slug_url(extension='.html'),  # 'slug_as_id'
+    # 'slug_as_id.html'
+    url(slug_url(extension='.html'),
         DetailView.as_view(model=models.Character),
         name='detail'),
     ]
