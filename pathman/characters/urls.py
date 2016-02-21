@@ -6,11 +6,27 @@ from . import views
 from . import models
 
 app_name = 'characters'
+slug_pattern = '[a-z\-_]+'
+
+def detail_url(identifier, pattern):
+    """
+    Generates a url regex based on the passed identifier column name
+    and the expected pattern.
+
+    :param identifier: The model field used to select the record
+        (e.g. 'pk' or 'slug')
+    :type identifier: string
+    :param pattern: Regular expression pattern for identifiers
+    :type pattern: string or regexp
+    :rtype: a detail url pattern
+    """
+    return r'^(?P<{}>{})/$'.format(identifier, pattern)
+
 urlpatterns = [
     url(r'^$',
         ListView.as_view(model=models.Character),
         name='index'),
-    url(r'^(?P<slug>[a-z\-_]+)/$',
+    url(detail_url('slug', slug_pattern),
         DetailView.as_view(model=models.Character),
         name='detail'),
     url(r'^new$',
