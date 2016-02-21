@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^$',
         ListView.as_view(model=models.Character),
         name='index'),
-    url(r'^(?P<pk>[0-9]+)/$',
+    url(r'^(?P<slug>[a-z\-_]+)/$',
         DetailView.as_view(model=models.Character),
         name='detail'),
     url(r'^new$',
