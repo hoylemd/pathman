@@ -59,4 +59,4 @@ class Character(InstrumentedModel):
         return string
 
     def get_absolute_url(self):
-        return reverse('characters:detail', args=[str(self.id)])
+        return reverse('characters:detail', args=[str(self.slug)])
