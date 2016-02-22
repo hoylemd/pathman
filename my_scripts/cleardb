@@ -1,7 +1,5 @@
 #! /bin/bash
 
-my_scripts/migrate races zero
-my_scripts/migrate classes zero
-my_scripts/migrate characters zero
+my_scripts/drop_tables
 
-# my_scripts/migrate
+my_scripts/migrate

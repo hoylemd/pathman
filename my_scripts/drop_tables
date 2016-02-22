@@ -15,3 +15,7 @@ for table in 'characters_character' 'characters_classlevel' 'races_race' 'classe
   sql="DROP TABLE $table CASCADE"
   $tool $db_name -c "$sql"
 done
+
+for app in 'characters' 'classes' 'races'; do
+  python pathman/manage.py migrate --settings=config.settings.dev --fake $app zero
+done

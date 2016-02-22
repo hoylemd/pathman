@@ -11,12 +11,6 @@ import model_utils.fields
 
 
 class Migration(migrations.Migration):
-
-    replaces = [
-        (b'characters', '0001_initial'),
-        (b'characters', '0002_add_class_relation')
-    ]
-
     initial = True
 
     dependencies = [
@@ -42,6 +36,10 @@ class Migration(migrations.Migration):
                     default=django.utils.timezone.now,
                     editable=False,
                     verbose_name='modified')),
+                ('created_by', models.ForeignKey(
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
                 ('name', models.CharField(max_length=200)),
                 ('slug', autoslug.fields.AutoSlugField(
                     editable=False,
@@ -57,7 +55,7 @@ class Migration(migrations.Migration):
                 ('race', models.ForeignKey(
                     null=True,
                     on_delete=django.db.models.deletion.CASCADE,
-                    to='races.Race')),
+                    to='races.Race'))
             ],
             options={
                 'abstract': False,
@@ -97,13 +95,5 @@ class Migration(migrations.Migration):
             field=models.ManyToManyField(
                 through='characters.ClassLevel',
                 to=b'classes.Class'),
-        ),
-        migrations.AddField(
-            model_name='character',
-            name='created_by',
-            field=models.ForeignKey(
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                to=settings.AUTH_USER_MODEL),
         ),
     ]
