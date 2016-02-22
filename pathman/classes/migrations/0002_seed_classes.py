@@ -34,12 +34,8 @@ def add_classes(apps, schema_editor):
 
 def remove_classes(apps, schema_editor):
     Class = apps.get_model("classes", "Class")
-    for slug, _ in core_classes:
-        try:
-            c_class = Class.objects.get(slug=slug)
-            c_class.delete()
-        except:
-            info("class '{}' does not exist.".format(slug))
+    for c_class in Class.objects.all():
+        c_class.delete()
 
 
 class Migration(migrations.Migration):

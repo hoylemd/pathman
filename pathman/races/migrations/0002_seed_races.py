@@ -30,12 +30,8 @@ def add_races(apps, schema_editor):
 
 def remove_races(apps, schema_editor):
     Race = apps.get_model("races", "Race")
-    for slug, _ in core_races:
-        try:
-            race = Race.objects.get(slug=slug)
-            race.delete()
-        except:
-            info("race '{}' does not exist.".format(slug))
+    for race in Race.objects.all():
+        race.delete()
 
 
 class Migration(migrations.Migration):
