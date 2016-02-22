@@ -38,14 +38,14 @@ urlpatterns = [
     # 'classes/
     url(r'^$',
         ListView.as_view(model=models.Class),
-        name='class_index'),
+        name='index'),
 
     # 'classes/slug_as_id/'
     url(slug_url(),
-        RedirectView.as_view(pattern_name='characters:class-detail'),
+        RedirectView.as_view(pattern_name='detail'),
         name='detail-redirect'),
     # 'classes/slug_as_id.html'
     url(slug_url(extension='.html'),
         DetailView.as_view(model=models.Class),
-        name='class_detail')
+        name='detail')
 ]
