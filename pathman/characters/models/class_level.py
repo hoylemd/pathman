@@ -2,11 +2,12 @@ from django.db import models
 
 from model_utils.models import TimeStampedModel
 
-from .character_class import CharacterClass
+from classes.models import Class
 from .character import Character
 
+
 class ClassLevel(TimeStampedModel):
-    character_class = models.ForeignKey(CharacterClass,
+    character_class = models.ForeignKey(Class,
                                         on_delete=models.CASCADE)
     character = models.ForeignKey(Character,
                                   on_delete=models.CASCADE)

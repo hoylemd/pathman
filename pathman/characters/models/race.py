@@ -1,4 +1,4 @@
-from .abstract import InstrumentedModel
+from util.models import InstrumentedModel
 
 
 class Race(InstrumentedModel):

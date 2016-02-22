@@ -1,8 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from .abstract import InstrumentedModel
-from .character_class import CharacterClass
+from util.models import InstrumentedModel
+from classes.models import Class
 from .race import Race
 
 
@@ -20,7 +20,7 @@ class Character(InstrumentedModel):
     wisdom = models.IntegerField(default=10)
     charisma = models.IntegerField(default=10)
 
-    classes = models.ManyToManyField(CharacterClass, through='ClassLevel')
+    classes = models.ManyToManyField(Class, through='ClassLevel')
 
     race = models.ForeignKey(Race, null=True)
 
