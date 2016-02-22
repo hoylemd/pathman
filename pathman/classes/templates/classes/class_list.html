@@ -2,7 +2,7 @@
 <ul>
     {% for c_class in object_list %}
         <li>
-            <a href="{% url 'characters:class_detail' c_class.slug %}"
+            <a href="{% url 'classes:detail' c_class.slug %}"
                     title="{{ c_class.name }}">
                 {{ c_class.name }}
             </a>

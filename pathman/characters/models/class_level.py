@@ -7,7 +7,7 @@ from .character import Character
 
 
 class ClassLevel(TimeStampedModel):
-    character_class = models.ForeignKey(Class,
+    the_class = models.ForeignKey(Class,
                                         on_delete=models.CASCADE)
     character = models.ForeignKey(Character,
                                   on_delete=models.CASCADE)
@@ -15,7 +15,7 @@ class ClassLevel(TimeStampedModel):
 
     @property
     def summary(self):
-        return "{} {}".format(self.character_class.name, self.level)
+        return "{} {}".format(self.the_class.name, self.level)
 
     def __str__(self):
         return "{}, {}".format(self.character.name, self.summary)
