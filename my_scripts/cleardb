@@ -1,8 +1,7 @@
 #! /bin/bash
 
-my_scripts/migrate classes 0001
-my_scripts/migrate races 0001
-my_scripts/migrate characters 0001
+my_scripts/migrate races zero
+my_scripts/migrate classes zero
+my_scripts/migrate characters zero
 
-
-my_scripts/migrate
+# my_scripts/migrate

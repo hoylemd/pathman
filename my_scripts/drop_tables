@@ -1,0 +1,17 @@
+#! /bin/bash
+
+tool='psql'
+db_name='pathman'
+
+if ! which $tool; then
+  echo "Postgres is not installed, or it's tools are not in your PATH."
+  exit 1
+fi
+
+echo "Dropping the following tables:"
+
+for table in 'characters_character' 'characters_classlevel' 'races_race' 'classes_class'; do
+  echo "  $table"
+  sql="DROP TABLE $table CASCADE"
+  $tool $db_name -c "$sql"
+done
