@@ -2,7 +2,7 @@
 
 <h1>{{ character.name }}</h1>
 <h2>
-    <a href="{% url 'characters:race_detail' character.race.slug %}"
+    <a href="{% url 'races:detail' character.race.slug %}"
         title="{{ character.race.name }}"
     >{{ character.race.name }}</a>
     {% for class_level in character.classlevel_set.all %}

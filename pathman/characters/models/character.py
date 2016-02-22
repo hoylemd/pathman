@@ -3,7 +3,7 @@ from django.db import models
 
 from util.models import InstrumentedModel
 from classes.models import Class
-from .race import Race
+from races.models import Race
 
 
 def ability_modifier(score):

@@ -2,7 +2,7 @@
 <ul>
     {% for race in object_list %}
         <li>
-            <a href="{% url 'characters:race_detail' race.slug %}"
+            <a href="{% url 'races:detail' race.slug %}"
                     title="{{ race.name }}">
                 {{ race.name }}
             </a>

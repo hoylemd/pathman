@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Character, ClassLevel, Race
+from .models import Character, ClassLevel
 
 
 class ClassLevelInline(admin.TabularInline):
@@ -13,4 +13,3 @@ class CharacterAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Character, CharacterAdmin)
-admin.site.register(Race)
