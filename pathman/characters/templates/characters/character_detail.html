@@ -1,7 +1,17 @@
 {% load character_sheet_filters %}
 
 <h1>{{ character.name }}</h1>
-<h2>{{ character.race.name }} {{ character.classes_and_levels }}</h2>
+<h2>
+    <a href="{% url 'characters:race_detail' character.race.slug %}"
+        title="{{ character.race.name }}"
+    >{{ character.race.name }}</a>
+    {% for class_level in character.classlevel_set.all %}
+        <a href="{% url 'classes:detail' class_level.the_class.slug %}"
+            title="{{ class_level.the_class.name }}"
+        >{{ class_level.the_class.name }}</a>
+        {{ class_level.level }}
+    {% endfor %}
+</h2>
 
 <p>{{ character.hp }} hp</p>
 
