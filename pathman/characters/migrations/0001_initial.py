@@ -61,10 +61,7 @@ class Migration(migrations.Migration):
                 ('race', models.ForeignKey(
                     null=True,
                     on_delete=django.db.models.deletion.CASCADE,
-                    to='races.Race')),
-                ('classes', models.ManyToManyField(
-                    through='characters.ClassLevel',
-                    to=b'classes.Class'))
+                    to='races.Race'))
             ],
             options={
                 'abstract': False,
@@ -97,5 +94,11 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-        )
+        ),
+        migrations.AddField(
+            model_name='Character',
+            name='classes',
+            field=models.ManyToManyField(
+                through='characters.ClassLevel',
+                to=b'classes.Class'))
     ]
