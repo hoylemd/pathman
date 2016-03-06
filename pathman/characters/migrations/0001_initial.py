@@ -11,12 +11,6 @@ import model_utils.fields
 
 
 class Migration(migrations.Migration):
-
-    replaces = [
-        (b'characters', '0001_initial'),
-        (b'characters', '0002_add_class_relation')
-    ]
-
     initial = True
 
     dependencies = [
