@@ -27,6 +27,6 @@ urlpatterns = [
         name='detail-redirect'),
     # 'slug_as_id.html'
     url(slug_url(extension='.html'),
-        DetailView.as_view(model=models.Character),
+        views.CharacterSheetView.as_view(),
         name='detail'),
     ]

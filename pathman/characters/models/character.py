@@ -25,30 +25,6 @@ class Character(InstrumentedModel):
     race = models.ForeignKey(Race, null=True)
 
     @property
-    def strength_mod(self):
-        return ability_modifier(self.strength)
-
-    @property
-    def dexterity_mod(self):
-        return ability_modifier(self.dexterity)
-
-    @property
-    def constitution_mod(self):
-        return ability_modifier(self.constitution)
-
-    @property
-    def intelligence_mod(self):
-        return ability_modifier(self.intelligence)
-
-    @property
-    def wisdom_mod(self):
-        return ability_modifier(self.wisdom)
-
-    @property
-    def charisma_mod(self):
-        return ability_modifier(self.charisma)
-
-    @property
     def classes_and_levels(self):
         classes = self.classlevel_set.all()
         string = ', '.join(c_class.summary for c_class in classes)
