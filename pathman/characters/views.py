@@ -4,8 +4,11 @@ from django.views.generic.detail import DetailView
 from .models import Character
 
 
-def ability_modifier(score):
-    return score / 2 - 5
+def ability_struct(score):
+    return {
+        'score': score,
+        'mod': score / 2 - 5
+    }
 
 
 class CharacterCreateView(CreateView):
@@ -18,12 +21,16 @@ class CharacterSheetView(DetailView):
     model = Character
 
     def get_context_data(self, **kwargs):
+        character = self.object
         return {
-            'character': self.object,
-            'strength_mod': ability_modifier(self.object.strength),
-            'dexterity_mod': ability_modifier(self.object.dexterity),
-            'constitution_mod': ability_modifier(self.object.constitution),
-            'intelligence_mod': ability_modifier(self.object.intelligence),
-            'wisdom_mod': ability_modifier(self.object.wisdom),
-            'charisma_mod': ability_modifier(self.object.charisma)
+            'name': character.name,
+            'race': character.race,
+            'classes': character.classlevel_set.all(),
+            'hp': character.hp,
+            'strength': ability_struct(character.strength),
+            'dexterity': ability_struct(character.dexterity),
+            'constitution': ability_struct(character.constitution),
+            'intelligence': ability_struct(character.intelligence),
+            'wisdom': ability_struct(character.wisdom),
+            'charisma': ability_struct(character.charisma)
         }

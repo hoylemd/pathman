@@ -1,11 +1,11 @@
 {% load character_sheet_filters %}
 
-<h1>{{ character.name }}</h1>
+<h1>{{ name }}</h1>
 <h2>
-    <a href="{% url 'races:detail' character.race.slug %}"
-        title="{{ character.race.name }}"
-    >{{ character.race.name }}</a>
-    {% for class_level in character.classlevel_set.all %}
+    <a href="{% url 'races:detail' race.slug %}"
+        title="{{ race.name }}"
+    >{{ race.name }}</a>
+    {% for class_level in classes %}
         <a href="{% url 'classes:detail' class_level.the_class.slug %}"
             title="{{ class_level.the_class.name }}"
         >{{ class_level.the_class.name }}</a>
@@ -19,33 +19,33 @@
     <tr><th>Ability</th><th>Score</th><th>Mod</th></tr>
     <tr>
         <td>STR</td>
-        <td>{{ character.strength }}</td>
-        <td>{{ strength_mod|modifier }}</td>
+        <td>{{ strength.score }}</td>
+        <td>{{ strength.mod|modifier }}</td>
     <tr>
     <tr>
         <td>DEX</td>
-        <td>{{ character.dexterity }}</td>
-        <td>{{ dexterity_mod|modifier }}</td>
+        <td>{{ dexterity.score }}</td>
+        <td>{{ dexterity.mod|modifier }}</td>
     <tr>
     <tr>
         <td>CON</td>
-        <td>{{ character.constitution }}</td>
-        <td>{{ constitution_mod|modifier }}</td>
+        <td>{{ constitution.score }}</td>
+        <td>{{ constitution.mod|modifier }}</td>
     <tr>
     <tr>
         <td>INT</td>
-        <td>{{ character.intelligence }}</td>
-        <td>{{ intelligence_mod|modifier }}</td>
+        <td>{{ intelligence.score }}</td>
+        <td>{{ intelligence.mod|modifier }}</td>
     <tr>
     <tr>
         <td>WIS</td>
-        <td>{{ character.wisdom }}</td>
-        <td>{{ wisdom_mod|modifier }}</td>
+        <td>{{ wisdom.score }}</td>
+        <td>{{ wisdom.mod|modifier }}</td>
     <tr>
     <tr>
         <td>CHA</td>
-        <td>{{ character.charisma }}</td>
-        <td>{{ charisma_mod|modifier }}</td>
+        <td>{{ charisma.score }}</td>
+        <td>{{ charisma.mod|modifier }}</td>
     <tr>
 </table>
 
