@@ -24,15 +24,5 @@ class Character(InstrumentedModel):
 
     race = models.ForeignKey(Race, null=True)
 
-    @property
-    def classes_and_levels(self):
-        classes = self.classlevel_set.all()
-        string = ', '.join(c_class.summary for c_class in classes)
-
-        if string == '':
-            string = "A classless peasant!"
-
-        return string
-
     def get_absolute_url(self):
         return reverse('characters:detail', args=[str(self.slug)])
