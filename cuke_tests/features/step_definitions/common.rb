@@ -2,7 +2,7 @@
 def page_mappings
   # TODO: replace these with actual mappings
   @page_mappings ||= {
-    'root' => '/',
+    'home' => '/',
     'characters' => '/characters',
     'races' => '/races',
     'classes' => '/classes'
