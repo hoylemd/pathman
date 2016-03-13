@@ -131,3 +131,13 @@ end
 When(/I enter gibberish into "(.+)"$/) do |label|
   fill_in label, with: random_string
 end
+
+def choose_from_dropdown(label, option)
+  dropdown_name = slugify(label)
+  dropdown = find("select[name=\"#{dropdown_name}\"]")
+  dropdown.find(:option, text: option).select_option
+end
+
+When(/I choose "(.*)" from the "(.*)" dropdown$/) do |option, label|
+  choose_from_dropdown()
+end

@@ -3,6 +3,7 @@ require 'capybara/cucumber'
 require 'capybara/poltergeist'
 require 'byebug'
 require 'HTTParty'
+require 'Faker'
 
 Capybara.javascript_driver = :poltergeist
 Capybara.default_driver = :poltergeist
